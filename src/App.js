@@ -30,7 +30,7 @@ class PurchaseDialog extends React.Component {
     const { canvas, scene, engine } = e;
 
     // Make scene-background white
-    //scene.clearColor = new BABYLON.Color3(1, 1, 1);
+    scene.clearColor = new BABYLON.Color3(1, 1, 1);
 
     // create a camera that rotates around the Scene-Origin
     var camera = new BABYLON.ArcRotateCamera('rotatingCamera', 0, 0, 10, BABYLON.Vector3.Zero());
@@ -47,13 +47,16 @@ class PurchaseDialog extends React.Component {
 
     // create the item in the scene and apply a material to it
     await BABYLON.SceneLoader.ImportMesh('', '/assets/', 'Ring.glb', scene, function onSuccess(meshes) {
+      // applies the material to all the meshes in the item
       scene.meshes.forEach(mesh => {
         mesh.material = material;
       });
+      // this prevents the item from being see-trough
       scene.getMaterialByName("itemMaterial").backFaceCulling = false;
     });
 
     function changeColor(r, g, b) {
+      // changes the color of the material, that is applied when the item has loaded
       scene.getMaterialByName("itemMaterial").diffuseColor = new BABYLON.Color3(r, g, b);
     }
 
