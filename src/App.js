@@ -3,11 +3,8 @@ import * as BABYLON from 'babylonjs';
 import './App.css';
 import BabylonScene from './babylonComponent';
 import 'babylonjs-loaders';
-import { isUnaryExpression } from '@babel/types';
-import { AbstractAssetTask } from 'babylonjs';
 
 class App extends React.Component {
-
   render() {
     return(
       <div className="App">
@@ -77,15 +74,11 @@ class PurchaseDialog extends React.Component {
   render() {
     return(
       <div className="PurchaseDialog">
-        <BabylonScene onSceneMount={ this.onSceneMount }  />
+        <BabylonScene onSceneMount={ this.onSceneMount }/>
         <ItemConfigurator buttons={ this.state.buttons }></ItemConfigurator>
       </div>
     );
   }
-}
-
-class ColorButton extends React.Component {
-  
 }
 
 class ItemConfigurator extends React.Component {
@@ -98,6 +91,16 @@ class ItemConfigurator extends React.Component {
       </div>
     );
   }
+}
+
+class ColorButton extends React.Component {
+  render() {
+    return(
+      <div className="ColorButton" onClick={ this.props.onClick }>
+        <p className="unselectable">{ this.props.colorName }</p>
+      </div>
+    );
+  } 
 }
 
 export default App;

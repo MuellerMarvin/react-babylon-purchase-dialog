@@ -44,3 +44,22 @@ body {
   width: 400px;
   height: 400px;
 }
+
+.ColorButton {
+  border: 1px solid gray;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+.ColorButton > p {
+  padding: 5px;
+  margin: 0;
+}
+
+.unselectable {
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
