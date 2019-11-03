@@ -8,7 +8,7 @@ class App extends React.Component {
   render() {
     return(
       <div className="App">
-        <PurchaseDialog></PurchaseDialog>
+        <PurchaseDialog itemName="Beautiful Ring" itemPrice="29.99€"></PurchaseDialog>
       </div>
     );
   }
@@ -75,7 +75,7 @@ class PurchaseDialog extends React.Component {
     return(
       <div className="PurchaseDialog">
         <BabylonScene onSceneMount={ this.onSceneMount }/>
-        <ItemConfigurator buttons={ this.state.buttons }></ItemConfigurator>
+        <ItemConfigurator buttons={ this.state.buttons } itemName={ this.props.itemName } itemPrice={ this.props.itemPrice }></ItemConfigurator>
       </div>
     );
   }
@@ -85,9 +85,10 @@ class ItemConfigurator extends React.Component {
   render() {
     return(
       <div className="ItemConfigurator">
-        {
-          this.props.buttons
-        }
+        <p>{ this.props.itemName }</p>
+        <p>{ this.props.itemPrice }</p>
+        <p>Available colors:</p>
+        { this.props.buttons }
       </div>
     );
   }
