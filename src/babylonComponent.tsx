@@ -1,6 +1,7 @@
 /* This code is from the official BabylonJS documentation on using it within ReactJS */
 import React from 'react';
 import * as BABYLON from 'babylonjs';
+import { int } from 'babylonjs';
 
 export type SceneEventArgs = {
   engine: BABYLON.Engine,
@@ -76,10 +77,12 @@ export default class Scene extends React.Component<SceneProps & React.HTMLAttrib
     }
 
     return (
-      <canvas
-        {...opts}
-        ref={this.onCanvasLoaded}
-      />
+      <div className="BabylonCanvas">
+        <canvas
+          {...opts}
+          ref={this.onCanvasLoaded}
+        />
+      </div>
     )
   }
 }

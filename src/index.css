@@ -7,12 +7,36 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-canvas {
-  height: 100%;
-  width: 100%;
+.PurchaseDialog {
+  display: block;
+  margin: auto;
+  margin-top: calc(50% - 200px);
+  height: 400px;
+  width: 800px;
+  overflow: hidden;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
 }
 
-.Scene {
+.BabylonCanvas {
+  display: inline-block;
+  border: 50px solid white;
+  width: calc(50% -  100px);
+  height: calc(100% - 100px);
+  margin: 0;
+  margin-left: -400px;
+  padding: 0;
+}
+
+.BabylonCanvas > canvas {
   height: 100%;
   width: 100%;
+  border-radius: 10px;
+}
+
+.ItemConfigurator {
+  display: inline-block;
+  position: absolute;
+  width: 400px;
+  height: 400px;
 }
