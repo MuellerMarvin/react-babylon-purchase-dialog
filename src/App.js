@@ -2,7 +2,9 @@ import React from 'react';
 import * as BABYLON from 'babylonjs';
 import './App.css';
 import BabylonScene from './babylonComponent';
-
+import 'babylonjs-loaders';
+import { isUnaryExpression } from '@babel/types';
+import { AbstractAssetTask } from 'babylonjs';
 
 class App extends React.Component {
 
@@ -24,11 +26,11 @@ class PurchaseDialog extends React.Component {
     };
   }
 
-  onSceneMount = (e) => {
+  onSceneMount = async (e) => {
     const { canvas, scene, engine } = e;
 
     // Make scene-background white
-    scene.clearColor = new BABYLON.Color3(1, 1, 1);
+    //scene.clearColor = new BABYLON.Color3(1, 1, 1);
 
     // create a camera that rotates around the Scene-Origin
     var camera = new BABYLON.ArcRotateCamera('rotatingCamera', 0, 0, 10, BABYLON.Vector3.Zero());
@@ -40,18 +42,24 @@ class PurchaseDialog extends React.Component {
     var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
     light.intensity = 0.7;
 
+    // create the itemMaterial
+    var material = new BABYLON.StandardMaterial('itemMaterial', scene);
+
     // create the item in the scene and apply a material to it
-    var item = BABYLON.Mesh.CreateSphere("sphere1", 16, 2, scene, true);
-    var material = new BABYLON.StandardMaterial('sphereMaterial', scene);
-    item.material = material;
+    await BABYLON.SceneLoader.ImportMesh('', '/assets/', 'Ring.glb', scene, function onSuccess(meshes) {
+      scene.meshes.forEach(mesh => {
+        mesh.material = material;
+      });
+      scene.getMaterialByName("itemMaterial").backFaceCulling = false;
+    });
 
     function changeColor(r, g, b) {
-      item.material.diffuseColor = new BABYLON.Color3(r, g, b);
+      scene.getMaterialByName("itemMaterial").diffuseColor = new BABYLON.Color3(r, g, b);
     }
 
     let buttons = [];
-    buttons.push(<button onClick={() => changeColor(1,0,0)}>red</button>);
-    buttons.push(<button onClick={() => changeColor(0,0,1)}>blue</button>);
+    buttons.push(<button key="red" onClick={() => changeColor(1,0,0)}>red</button>);
+    buttons.push(<button key="blue" onClick={() => changeColor(0,0,1)}>blue</button>);
 
     this.setState({buttons: buttons});
 
@@ -75,7 +83,7 @@ class PurchaseDialog extends React.Component {
 class ItemConfigurator extends React.Component {
   render() {
     return(
-      <div class="ItemConfigurator">
+      <div className="ItemConfigurator">
         {
           this.props.buttons
         }
