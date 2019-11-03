@@ -1,40 +1,49 @@
 * {
   outline: none;
+  font-family: 'Roboto', sans-serif;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.PurchaseDialog {
-  display: block;
-  margin: auto;
-  margin-top: calc(50% - 200px);
-  height: 400px;
-  width: 800px;
-  overflow: hidden;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.8);
-  border-radius: 10px;
+.unselectable {
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
 }
 
 .BabylonCanvas {
   display: inline-block;
   border: 50px solid white;
-  width: calc(50% -  100px);
-  height: calc(100% - 100px);
+  height: 250px;
+  width: 250px;
   margin: 0;
   margin-left: -400px;
+  margin-top: -25px;
   padding: 0;
 }
 
 .BabylonCanvas > canvas {
+  position: relative;
   height: 100%;
   width: 100%;
+  border-radius: 10px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
+}
+
+.PurchaseDialog {
+  position: absolute;
+  top: calc(50% - 200px);
+  left: calc(50% - 400px);
+  height: 300px;
+  width: 700px;
+  overflow: hidden;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
 }
 
@@ -45,21 +54,41 @@ body {
   height: 400px;
 }
 
+.ItemConfigurator > p {
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+
+.ItemName {
+  display: block;
+  font-size: 2em;
+}
+
+.ItemPrice {
+
+}
+
+.ColorHeader {
+  font-size: 0.9em;
+  margin: 0;
+  margin-bottom: 4px;
+}
+
 .ColorButton {
-  border: 1px solid gray;
+  border: 1px solid rgba(0,0,0,0.2);
   border-radius: 10px;
   display: inline-block;
+  margin-left: 0;
+  margin-right: 4px;
+  padding: 0px;
+  padding-left: 4px;
+  padding-right: 4px;
+  float: left;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
 }
 
 .ColorButton > p {
   padding: 5px;
   margin: 0;
-}
-
-.unselectable {
-  user-select: none;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  -o-user-select: none;
 }

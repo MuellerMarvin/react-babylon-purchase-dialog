@@ -85,9 +85,9 @@ class ItemConfigurator extends React.Component {
   render() {
     return(
       <div className="ItemConfigurator">
-        <p>{ this.props.itemName }</p>
-        <p>{ this.props.itemPrice }</p>
-        <p>Available colors:</p>
+        <p className="ItemName">{ this.props.itemName }</p>
+        <p className="ItemPrice">{ this.props.itemPrice }</p>
+        <p className="ColorHeader">Available colors:</p>
         { this.props.buttons }
       </div>
     );
