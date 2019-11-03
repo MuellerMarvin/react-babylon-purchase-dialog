@@ -27,31 +27,26 @@ class PurchaseDialog extends React.Component {
   onSceneMount = (e) => {
     const { canvas, scene, engine } = e;
 
-    // This creates and positions a free camera (non-mesh)
-    var camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 5, -10), scene);
+    // Make scene-background white
+    scene.clearColor = new BABYLON.Color3(1, 1, 1);
 
-    // This targets the camera to scene origin
-    camera.setTarget(BABYLON.Vector3.Zero());
+    // create a camera that rotates around the Scene-Origin
+    var camera = new BABYLON.ArcRotateCamera('rotatingCamera', 0, 0, 10, BABYLON.Vector3.Zero());
 
     // This attaches the camera to the canvas
     camera.attachControl(canvas, true);
 
-    // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
+    // create a light and set its intensity
     var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
-
-    // Default intensity is 1. Let's dim the light a small amount
     light.intensity = 0.7;
 
-    // Our built-in 'sphere' shape. Params: name, subdivs, size, scene
-    var sphere = BABYLON.Mesh.CreateSphere("sphere1", 16, 2, scene, true);
+    // create the item in the scene and apply a material to it
+    var item = BABYLON.Mesh.CreateSphere("sphere1", 16, 2, scene, true);
     var material = new BABYLON.StandardMaterial('sphereMaterial', scene);
-    sphere.material = material;
-
-    // Move the sphere upward 1/2 its height
-    sphere.position.y = 1;
+    item.material = material;
 
     function changeColor(r, g, b) {
-      sphere.material.diffuseColor = new BABYLON.Color3(r, g, b);
+      item.material.diffuseColor = new BABYLON.Color3(r, g, b);
     }
 
     let buttons = [];
@@ -59,10 +54,6 @@ class PurchaseDialog extends React.Component {
     buttons.push(<button onClick={() => changeColor(0,0,1)}>blue</button>);
 
     this.setState({buttons: buttons});
-
-    // Our built-in 'ground' shape. Params: name, width, depth, subdivs, scene
-    // eslint-disable-next-line no-unused-vars
-    var ground = BABYLON.Mesh.CreateGround("ground1", 6, 6, 2, scene, true);
 
     engine.runRenderLoop(() => {
       if (scene) {
