@@ -40,7 +40,7 @@ class PurchaseDialog extends React.Component {
 
     // create a light and set its intensity
     var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
-    light.intensity = 0.7;
+    light.intensity = 1;
 
     // create the itemMaterial
     var material = new BABYLON.StandardMaterial('itemMaterial', scene);
