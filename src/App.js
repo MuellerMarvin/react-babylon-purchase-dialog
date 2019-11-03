@@ -33,7 +33,7 @@ class PurchaseDialog extends React.Component {
     scene.clearColor = new BABYLON.Color3(1, 1, 1);
 
     // create a camera that rotates around the Scene-Origin
-    var camera = new BABYLON.ArcRotateCamera('rotatingCamera', 0, 0, 10, BABYLON.Vector3.Zero());
+    var camera = new BABYLON.ArcRotateCamera('rotatingCamera', 0, 1, 10, BABYLON.Vector3.Zero());
 
     // This attaches the camera to the canvas
     camera.attachControl(canvas, true);
@@ -51,6 +51,7 @@ class PurchaseDialog extends React.Component {
       scene.meshes.forEach(mesh => {
         mesh.material = material;
       });
+
       // this prevents the item from being see-trough
       scene.getMaterialByName("itemMaterial").backFaceCulling = false;
     });
@@ -61,8 +62,8 @@ class PurchaseDialog extends React.Component {
     }
 
     let buttons = [];
-    buttons.push(<button key="red" onClick={() => changeColor(1,0,0)}>red</button>);
-    buttons.push(<button key="blue" onClick={() => changeColor(0,0,1)}>blue</button>);
+    buttons.push(<ColorButton key="red" colorName="Red" onClick={() => changeColor(1,0,0)}></ColorButton>);
+    buttons.push(<ColorButton key="blue" colorName="Blue" onClick={() => changeColor(0,0,1)}></ColorButton>);
 
     this.setState({buttons: buttons});
 
@@ -81,6 +82,10 @@ class PurchaseDialog extends React.Component {
       </div>
     );
   }
+}
+
+class ColorButton extends React.Component {
+  
 }
 
 class ItemConfigurator extends React.Component {
