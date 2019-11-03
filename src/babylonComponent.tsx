@@ -1,4 +1,4 @@
-/* This code is from the official babylon documentation for creating a scene inside ReactJS */
+/* This code is from the official BabylonJS documentation on using it within ReactJS */
 import React from 'react';
 import * as BABYLON from 'babylonjs';
 
