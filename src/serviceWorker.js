@@ -127,9 +127,11 @@ function checkValidServiceWorker(swUrl, config) {
 }
 
 export function unregister() {
+  /* Bug in create-react-app - WONT FIX
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready.then(registration => {
       registration.unregister();
     });
   }
+  */
 }
