@@ -30,10 +30,14 @@ class PurchaseDialog extends React.Component {
     scene.clearColor = new BABYLON.Color3(1, 1, 1);
 
     // create a camera that rotates around the Scene-Origin
-    var camera = new BABYLON.ArcRotateCamera('rotatingCamera', 0, 1, 10, BABYLON.Vector3.Zero());
+    var camera = new BABYLON.ArcRotateCamera('rotatingCamera', 0, 1, 5, BABYLON.Vector3.Zero());
 
     // This attaches the camera to the canvas
     camera.attachControl(canvas, true);
+
+    // limit the camera's movement (prevent it from zooming)
+    camera.lowerRadiusLimit = 5;
+    camera.upperRadiusLimit = 5;
 
     // create a light and set its intensity
     var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
