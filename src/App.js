@@ -19,7 +19,7 @@ class PurchaseDialog extends React.Component {
     super(props);
 
     this.state = {
-      buttons: [],
+      colorButtons: [],
     };
   }
 
@@ -68,7 +68,7 @@ class PurchaseDialog extends React.Component {
     buttons.push(<ColorButton key="green" colorName="Green" hexColor="#00FF00" onClick={() => changeColor(0,1,0)}></ColorButton>);
     buttons.push(<ColorButton key="blue" colorName="Blue" hexColor="#0000FF" onClick={() => changeColor(0,0,1)}></ColorButton>);
 
-    this.setState({buttons: buttons});
+    this.setState({ colorButtons: buttons});
 
     engine.runRenderLoop(() => {
       if (scene) {
@@ -81,7 +81,7 @@ class PurchaseDialog extends React.Component {
     return(
       <div className="PurchaseDialog">
         <BabylonScene onSceneMount={ this.onSceneMount }/>
-        <ItemConfigurator buttons={ this.state.buttons } itemName={ this.props.itemName } itemPrice={ this.props.itemPrice }></ItemConfigurator>
+        <ItemConfigurator colorButtons={ this.state.colorButtons } itemName={ this.props.itemName } itemPrice={ this.props.itemPrice }></ItemConfigurator>
       </div>
     );
   }
@@ -94,7 +94,7 @@ class ItemConfigurator extends React.Component {
         <p className="ItemName">{ this.props.itemName }</p>
         <p className="ItemPrice">{ this.props.itemPrice }</p>
         <p className="ColorHeader">Available colors:</p>
-        { this.props.buttons }
+        { this.props.colorButtons }
       </div>
     );
   }
