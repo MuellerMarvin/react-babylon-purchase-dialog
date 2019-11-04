@@ -59,8 +59,10 @@ class PurchaseDialog extends React.Component {
     }
 
     let buttons = [];
-    buttons.push(<ColorButton key="red" colorName="Red" onClick={() => changeColor(1,0,0)}></ColorButton>);
-    buttons.push(<ColorButton key="blue" colorName="Blue" onClick={() => changeColor(0,0,1)}></ColorButton>);
+    buttons.push(<ColorButton key="white" colorName="White" hexColor="#FFFFFF" onClick={() => changeColor(1,1,1)}></ColorButton>);
+    buttons.push(<ColorButton key="red" colorName="Red" hexColor="#FF0000" onClick={() => changeColor(1,0,0)}></ColorButton>);
+    buttons.push(<ColorButton key="green" colorName="Green" hexColor="#00FF00" onClick={() => changeColor(0,1,0)}></ColorButton>);
+    buttons.push(<ColorButton key="blue" colorName="Blue" hexColor="#0000FF" onClick={() => changeColor(0,0,1)}></ColorButton>);
 
     this.setState({buttons: buttons});
 
@@ -98,10 +100,18 @@ class ColorButton extends React.Component {
   render() {
     return(
       <div className="ColorButton" onClick={ this.props.onClick }>
-        <p className="unselectable">{ this.props.colorName }</p>
+        <ColorDot hexColor={ this.props.hexColor }></ColorDot>
+          <p className="unselectable">{ this.props.colorName }</p>
       </div>
     );
   } 
+}
+
+function ColorDot(props) {
+  return(
+    <div className="ColorDot" style={{ backgroundColor: props.hexColor }}>
+    </div>
+  );
 }
 
 export default App;
